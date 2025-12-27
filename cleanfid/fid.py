@@ -595,9 +595,9 @@ def test_stats_exists(
     else:
         model_modifier = "_" + model_name
     if metric == "FID":
-        fname = f"{name}_{mode}{model_modifier}_{split}_{res}.npz"
+        fname = f"{name}_{mode}{model_modifier}_{split}_{res}.npz".lower()
     elif metric == "KID":
-        fname = f"{name}_{mode}{model_modifier}_{split}_{res}_kid.npz"
+        fname = f"{name}_{mode}{model_modifier}_{split}_{res}_kid.npz".lower()
     fpath = os.path.join(stats_folder, fname)
     return os.path.exists(fpath)
 
@@ -632,7 +632,7 @@ def remove_custom_stats(
         raise Exception(msg)
     os.remove(outf)
     # remove the KID stats
-    outf = os.path.join(stats_folder, f"{name}_{mode}{model_modifier}_{split}_{res}_kid.npz")
+    outf = os.path.join(stats_folder, f"{name}_{mode}{model_modifier}_{split}_{res}_kid.npz".lower())
     if not os.path.exists(outf):
         msg = f"The stats file {name} does not exist."
         raise Exception(msg)
